@@ -19,7 +19,6 @@ export const LeftBar = styled.span`
   width: 13px;
   height: 3px;
   display: block;
-
   float: right;
   border-radius: 2px;
   transform: rotate(35deg);
@@ -33,9 +32,9 @@ export const LeftBar = styled.span`
     border-radius: 6px 10px 10px 6px;
     transition: all 0.5s cubic-bezier(0.25, 1.7, 0.35, 0.8);
     z-index: -1;
-    transform-origin: ${({ open }: { open: boolean }) =>
-      open && `center center`};
-    transform: ${({ open }) => open && `rotate(-70deg)`};
+    transform-origin: ${({ isOpen }: { isOpen: boolean }) =>
+      isOpen && `center center`};
+    transform: ${({ isOpen }) => isOpen && `rotate(-70deg)`};
   }
 `;
 
@@ -60,8 +59,8 @@ export const RightBar = styled.span`
     border-radius: 10px 6px 6px 10px;
     transition: all 0.5s cubic-bezier(0.25, 1.7, 0.35, 0.8);
     z-index: -1;
-    transform-origin: ${({ open }: { open: boolean }) =>
-      open && `center center`};
-    transform: ${({ open }) => open && `rotate(70deg)`};
+    transform-origin: ${({ isOpen }: { isOpen: boolean }) =>
+      isOpen && `center center`};
+    transform: ${({ isOpen }) => isOpen && `rotate(70deg)`};
   }
 `;

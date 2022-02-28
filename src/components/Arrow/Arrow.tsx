@@ -1,11 +1,17 @@
 import React from 'react';
 import { StyledArrow, LeftBar, RightBar } from './styles';
 
-const Arrow = ({ open }: { open: boolean }) => {
+const Arrow = ({
+  isOpen,
+  isHovered,
+}: {
+  isOpen: boolean;
+  isHovered?: boolean;
+}) => {
   return (
     <StyledArrow>
-      <LeftBar open={open}></LeftBar>
-      <RightBar open={open}></RightBar>
+      <LeftBar isOpen={isOpen}></LeftBar>
+      <RightBar isOpen={isOpen}></RightBar>
     </StyledArrow>
   );
 };

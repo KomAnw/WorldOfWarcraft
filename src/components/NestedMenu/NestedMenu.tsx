@@ -6,7 +6,7 @@ import Arrow from 'components/Arrow';
 
 const NestedMenu = ({ pages, title }: Pages) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const isOpen = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLLIElement>) => {
     setAnchorEl(event.currentTarget);
@@ -18,17 +18,17 @@ const NestedMenu = ({ pages, title }: Pages) => {
     <>
       <StyledMenuItem id="basic-button" onClick={handleClick}>
         {title}
-        <Arrow open={open} />
+        <Arrow isOpen={isOpen} />
       </StyledMenuItem>
       <StyledMenu
         id="basic-menu"
         anchorEl={anchorEl}
-        open={open}
+        open={isOpen}
         onClose={handleClose}
       >
-        {pages.map((page: any) => (
-          <StyledNavLink to={page.path}>
-            <StyledMenuItem key={page.name} disableRipple={true}>
+        {pages.map((page, index) => (
+          <StyledNavLink to={page.path} key={page.name + index}>
+            <StyledMenuItem disableRipple={true}>
               <Typography textAlign="center">{page.name}</Typography>
             </StyledMenuItem>
           </StyledNavLink>

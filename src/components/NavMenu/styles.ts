@@ -1,19 +1,24 @@
 import styled from '@emotion/styled/macro';
 import { NavLink } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
 
-export const StyledMenu = styled(Menu)`
+export const StyledDrawer = styled(Drawer)`
   .MuiPaper-root {
-    top: 0 !important;
-    left: 0 !important;
-    height: 100vh;
     width: 290px;
-    max-height: 100vh;
-    border-radius: initial;
+    background-color: #211510;
+    border-right: 2px solid #352011;
+  }
+`;
+
+export const MobileBox = styled(Box)`
+  flex-grow: 1;
+  display: none;
+  @media (max-width: 900px) {
+    display: block;
   }
 `;
 
@@ -32,8 +37,13 @@ export const StyledCloseIcon = styled(CloseIcon)`
   outline: none;
 `;
 
-export const StyledBox = styled(Box)`
+export const DesktopBox = styled(Box)`
   gap: 10px;
+  flex-grow: 1;
+  display: flex;
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 export const StyledImg = styled.img`
@@ -54,11 +64,10 @@ export const StyledNavLink = styled(NavLink)`
   color: #dcbb2c;
   text-decoration: none;
   &:hover {
-    border-bottom: 2px solid #dcbb2c;
+    color: #ffd831;
   }
   &.active {
     color: #ffd831;
-    border-bottom: 2px solid #dcbb2c;
   }
 `;
 
@@ -67,4 +76,18 @@ export const LogoContainer = styled(Typography)`
   justify-content: center;
 `;
 
-export const Blizz = styled('img')``;
+export const Blizz = styled('img')`
+  width: 70%;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 40px;
+  margin-left: 13%;
+`;
+
+export const LinksContainer = styled.div`
+  margin: 0 auto;
+  width: 83%;
+  margin-top: 50px;
+  display: grid;
+  gap: 10px;
+`;

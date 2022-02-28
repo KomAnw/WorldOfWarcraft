@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import NestedMenu from 'components/NestedMenu';
 import WoWLogo from 'assets/Header/WoWLogo.svg';
-import BlizzLogo from 'assets/Header/BlizzLogo.svg';
+import BlizzLogo from 'assets//SideMenu/Blizzard.png';
 import MenuItem from '@mui/material/MenuItem';
-
 import * as constants from 'constants/index';
+
 import {
+  MobileBox,
   StyledImg,
   StyledNavLink,
   LogoContainer,
-  StyledBox,
+  DesktopBox,
   StyledMenuIcon,
-  StyledMenu,
+  StyledDrawer,
   StyledCloseIcon,
   Blizz,
+  LinksContainer,
 } from './styles';
 
 const SimpleLink = ({ page }) => {
@@ -32,39 +33,34 @@ const SimpleLink = ({ page }) => {
 };
 
 const NavMenu = () => {
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => setAnchorElNav(null);
+  const handleMenu = () => setIsOpen(!isOpen);
 
   return (
     <>
-      <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-        <IconButton onClick={handleOpenNavMenu}>
+      <MobileBox>
+        <IconButton onClick={handleMenu}>
           <StyledMenuIcon />
         </IconButton>
-        <StyledMenu
-          anchorEl={anchorElNav}
-          open={Boolean(anchorElNav)}
-          onClose={handleCloseNavMenu}
-          sx={{
-            display: { xs: 'block', md: 'none' },
-          }}
-        >
-          <StyledCloseIcon onClick={handleCloseNavMenu} />
-          {constants.PAGES.map((page) =>
-            page.nested ? (
-              <NestedMenu pages={page.nested} title={page.name} />
-            ) : (
-              <SimpleLink page={page} />
-            )
-          )}
+        <StyledDrawer open={isOpen} onClose={handleMenu} keepMounted>
+          <StyledCloseIcon onClick={handleMenu} />
+          <LinksContainer>
+            {constants.PAGES.map((page, index) =>
+              page.nested ? (
+                <NestedMenu
+                  pages={page.nested}
+                  title={page.name}
+                  key={page.name + index}
+                />
+              ) : (
+                <SimpleLink page={page} key={page.name + index} />
+              )
+            )}
+          </LinksContainer>
           <Blizz src={BlizzLogo} alt="" />
-        </StyledMenu>
-      </Box>
+        </StyledDrawer>
+      </MobileBox>
 
       <LogoContainer>
         <NavLink to="/">
@@ -72,15 +68,19 @@ const NavMenu = () => {
         </NavLink>
       </LogoContainer>
 
-      <StyledBox sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-        {constants.PAGES.map((page) =>
+      <DesktopBox>
+        {constants.PAGES.map((page, index) =>
           page.nested ? (
-            <NestedMenu pages={page.nested} title={page.name} />
+            <NestedMenu
+              pages={page.nested}
+              title={page.name}
+              key={page.name + index}
+            />
           ) : (
-            <SimpleLink page={page} />
+            <SimpleLink page={page} key={page.name + index} />
           )
         )}
-      </StyledBox>
+      </DesktopBox>
     </>
   );
 };
