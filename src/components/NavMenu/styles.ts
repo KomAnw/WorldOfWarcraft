@@ -47,7 +47,7 @@ export const DesktopBox = styled(Box)`
 `;
 
 export const StyledImg = styled.img`
-  width: 100px;
+  width: 8px;
   opacity: 0.9;
   margin-right: 10px;
   padding-top: 3px;
