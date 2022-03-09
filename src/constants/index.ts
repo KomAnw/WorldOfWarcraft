@@ -53,3 +53,32 @@ export const PAGES = [
     path: '/Competitive',
   },
 ];
+
+export const backgroundText = {
+  home: 'Learn more about the World of Warcraft universe',
+};
+
+export const PreviewCardsData = {
+  home: [
+    {
+      title: 'Races',
+      img: 'races.jpg',
+      text: 'Learn more about what races are in WoW',
+    },
+    {
+      title: 'Classes',
+      img: 'classes.jpg',
+      text: 'Learn more about what classes are in WoW',
+    },
+    {
+      title: 'Professions',
+      img: 'professions.jpg',
+      text: 'Learn more about what professions are in WoW',
+    },
+    {
+      title: 'Competitive',
+      img: 'competitive.jpg',
+      text: 'Check out the latest roundup of competitive modes',
+    },
+  ],
+};
