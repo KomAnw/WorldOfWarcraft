@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import NestedMenu from 'components/NestedMenu';
 import WoWLogo from 'assets/Header/WoWLogo.svg';
-import BlizzLogo from 'assets//SideMenu/Blizzard.png';
+import BlizzLogo from 'assets/SideMenu/Blizzard.png';
 import MenuItem from '@mui/material/MenuItem';
 import * as constants from 'constants/index';
 import {

@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-
+import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ClassesModule } from './classes/classes.module';
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
+  imports: [
+    MongooseModule.forRoot('mongodb://localhost:27017/World_of_Warcraft_DB'),
+    ClassesModule,
+  ],
 })
 export class AppModule {}

@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  mongo:
+    container_name: wowMongoDB
+    image: mongo:latest
+    environment:
+      - MONGODB_DATABASE="test"
+    ports:
+      - 27017:27017
+    # volumes:
+    #   - ~/apps/mongo:/data/db
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=root
+    #   - MONGO_INITDB_ROOT_PASSWORD=root
+
+  mongo-express:
+    image: mongo-express
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_PORT=27017
+    depends_on:
+      - mongo
+    ports:
+      - 8081:8081
+
+  mongo-seed:
+    container_name: mongo-seed
+    build: ./mongo-seed
+    links:
+      - mongo
